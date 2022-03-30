@@ -66,8 +66,19 @@ public:
                     mn = matrix[i][j];
         }
         return mn;
-
     }
+    int Get_max()
+    {
+        mx = matrix[0][0];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+                if (matrix[i][j] > mn)
+                    mn = matrix[i][j];
+        }
+        return mx;
+    }
+
     ~Matrix()
     {
         for (int i = 0; i < m; i++)
