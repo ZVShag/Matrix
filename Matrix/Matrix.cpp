@@ -99,7 +99,19 @@ public:
                 matrix[i][j]=d;
             }
     }
+    bool operator ==(Matrix& a)
+    {
+        bool p = true;
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
+                if (matrix[i][j] != a.Get_element(i, j))
+                {
+                    p = false;
+                    cout << endl << p;
+                }
+        return p;
 
+    }
 
     ~Matrix()
     {
@@ -140,5 +152,12 @@ int main()
     mtx2.Print();
     cout << endl << "Min element:  " << mtx2.Get_min();
     cout << endl << "Max element:  " << mtx2.Get_max();
+   
+    if (mtx == mtx2)
+    {
+        cout << "ravno";
+    }
+    
+
 }
 
