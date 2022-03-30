@@ -7,6 +7,7 @@ class Matrix
     T** matrix;
     int m; //stroki
     int n; // stolbci
+
 public:
     Matrix() { m = 0; n = 0; }
     Matrix(int a, int b)
@@ -15,7 +16,7 @@ public:
         m = a;
         n = b;
         // выделение памяти под хранение матрицы
-        matrix = (T**) new T * [m];// кол-во строк определяет кол-во указателей
+        matrix = (T**) new T* [m];// кол-во строк определяет кол-во указателей
         for (int i = 0; i < m; i++)
         {
             matrix[i] = (T*) new T[n];
@@ -52,6 +53,54 @@ public:
             cout << endl;
         }
     }
+
+    T Get_min()
+    {
+        int mn = matrix[0][0];
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
+                if (matrix[i][j] < mn)
+                    mn = matrix[i][j];
+        return mn;
+    }
+
+    T Get_max()
+    {
+        int mx = matrix[0][0];
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
+                if (matrix[i][j] > mx)
+                    mx = matrix[i][j];
+        return mx;
+    }
+    void Set_from_formula()
+    {
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
+                matrix[i][j]= i + j;
+
+    }
+    void Set_from_random()
+    {
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
+                matrix[i][j] = rand() % 100 - 20;
+
+    }
+    void Set_from_hand()
+    {
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
+            {
+                cout << "mtx[" << i << "," << j << "] =  ";
+                int d;
+                cin >> d;
+                cout << endl;
+                matrix[i][j]=d;
+            }
+    }
+
+
     ~Matrix()
     {
         for (int i = 0; i < m; i++)
@@ -70,30 +119,26 @@ int main()
     cin >> m;
     cout << endl << "Stolb:  ";
     cin >> n;
-    Matrix<int> mtx(m, n);// вызван конструктор с параметрами, все элементы =0
+    //Создание матрицы 
+    Matrix<int> mtx(m, n);
+    Matrix<int> mtx2(m, n);
+    //Вывод на экран болваник из конструктора
+
     mtx.Print();
     cout << endl;
-
-    for (int i = 0; i < m; i++)
-        for (int j = 0; j < n; j++)
-            mtx.Set_element(i, j, i + j);// заполнение по формуле
+    
+    //Матрица заполняется по формуле
+    mtx.Set_from_formula();
     mtx.Print();
-    /*
-    for (int i = 0; i < m; i++)
-        for (int j = 0; j < n; j++)
-        {
-            cout << "mtx[" << i << "," << j << "] =  ";
-            int d;
-            cin >> d;
-            cout << endl;
-            mtx.Set_element(i, j, d);
-        }
-    mtx.Print();*/
     cout << endl;
-
-    for (int i = 0; i < m; i++)
-        for (int j = 0; j < n; j++)
-            mtx.Set_element(i, j, rand() % 100 - 50);
-    mtx.Print();
+    
+    //Заполнение матрицы вручную
+    //mtx.Set_from_hand();
+ 
+    //Заполнение матрицы рандомными числами
+    mtx2.Set_from_random();
+    mtx2.Print();
+    cout << endl << "Min element:  " << mtx2.Get_min();
+    cout << endl << "Max element:  " << mtx2.Get_max();
 }
 
