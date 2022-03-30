@@ -52,6 +52,10 @@ public:
             cout << endl;
         }
     }
+    bool operator ==(const Matrix& a)
+    {
+        return ((this->m == a.m) && (this->n == a.n));
+    }
     ~Matrix()
     {
         for (int i = 0; i < m; i++)
