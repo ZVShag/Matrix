@@ -107,10 +107,37 @@ public:
                 if (matrix[i][j] != a.Get_element(i, j))
                 {
                     p = false;
-                    cout << endl << p;
+                  
                 }
         return p;
 
+    }
+    bool operator !=(Matrix& a)
+    {
+        bool p = true;
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
+                if (matrix[i][j] != a.Get_element(i, j))
+                {
+                    p = false;
+                    
+                }
+        return !p;
+
+    }
+    Matrix operator +(Matrix& a)
+    {
+        if (n == a.n && m == a.m)
+        {
+            Matrix<int> d(m, n);
+            for (int i = 0; i < m; i++)
+                for (int j = 0; j < n; j++)
+                    d.Set_element(i, j, matrix[i][j] + a.Get_element(i, j));
+            d.Print();
+            
+            return d;
+        }
+       
     }
 
     ~Matrix()
@@ -157,7 +184,8 @@ int main()
     {
         cout << "ravno";
     }
-    
+    Matrix<int> mtx3=mtx+mtx2;
+    mtx3.Print();
 
 }
 
