@@ -72,11 +72,13 @@ int main()
     cin >> n;
     Matrix<int> mtx(m, n);// вызван конструктор с параметрами, все элементы =0
     mtx.Print();
+    cout << endl;
 
     for (int i = 0; i < m; i++)
         for (int j = 0; j < n; j++)
             mtx.Set_element(i, j, i + j);// заполнение по формуле
     mtx.Print();
+    /*
     for (int i = 0; i < m; i++)
         for (int j = 0; j < n; j++)
         {
@@ -86,6 +88,12 @@ int main()
             cout << endl;
             mtx.Set_element(i, j, d);
         }
+    mtx.Print();*/
+    cout << endl;
+
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++)
+            mtx.Set_element(i, j, rand() % 100 - 50);
     mtx.Print();
 }
 
