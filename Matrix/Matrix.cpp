@@ -77,6 +77,15 @@ int main()
         for (int j = 0; j < n; j++)
             mtx.Set_element(i, j, i + j);// заполнение по формуле
     mtx.Print();
-
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++)
+        {
+            cout << "mtx[" << i << "," << j << "] =  ";
+            int d;
+            cin >> d;
+            cout << endl;
+            mtx.Set_element(i, j, d);
+        }
+    mtx.Print();
 }
 
