@@ -56,6 +56,18 @@ public:
     {
         return ((this->m == a.m) && (this->n == a.n));
     }
+    int Get_min()
+    {
+        mn = matrix[0][0];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+                if (matrix[i][j] < mn)
+                    mn = matrix[i][j];
+        }
+        return mn;
+
+    }
     ~Matrix()
     {
         for (int i = 0; i < m; i++)
