@@ -44,6 +44,14 @@ public:
         else
             return 0;
     }
+    Matrix(const Matrix &other)
+    {
+        Matrix<int> d(m, n);
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
+                this->matrix[i][j] = other.matrix[i][j];         
+
+    }
     void Print()
     {
         for (int i = 0; i < m; i++)
