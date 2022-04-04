@@ -44,12 +44,12 @@ public:
         else
             return 0;
     }
-    Matrix(const Matrix &other)
+    Matrix(const Matrix &a)
     {
-        Matrix<int> d(m, n);
         for (int i = 0; i < m; i++)
             for (int j = 0; j < n; j++)
-                this->matrix[i][j] = other.matrix[i][j];         
+                this->matrix[i][j] = a.matrix[i][j];  
+     
 
     }
     void Print()
@@ -85,7 +85,7 @@ public:
     {
         for (int i = 0; i < m; i++)
             for (int j = 0; j < n; j++)
-                matrix[i][j]= i + j;
+                matrix[i][j]= j-i;
 
     }
     void Set_from_random()
@@ -120,6 +120,33 @@ public:
         return p;
 
     }
+    void Determinant()
+    {
+        int gd=0;
+        int pd=0;
+        int tr1 = matrix[0][0];
+        int tr2 = matrix[n-1][n-1];
+        int tr3 = matrix[n - 1][0];
+        int tr4 = matrix[0][n - 1];
+        for (int i = 0; i < n; i++)
+        {
+            gd = gd + matrix[i][i];
+            pd = pd + matrix[i][n - i-1];
+            if ((i + 1) < n)
+                tr1 = tr1 + matrix[i + 1][n - i - 1];
+            if (n - 2 > 0)
+                tr2 = tr2 + matrix[i][n - 2 - i];
+            if ((i + 1) < n)
+            {
+                tr3 = tr3 + matrix[i][i + 1];
+                cout << matrix[i][i + 1] << endl;
+            }
+            if ((i + 1) < n)
+                tr4 = tr4 + matrix[i + 1][i];
+        }
+        cout << tr3  << endl;
+        
+    }
     bool operator !=(Matrix& a)
     {
         bool p = true;
@@ -133,20 +160,21 @@ public:
         return !p;
 
     }
-    Matrix operator +(Matrix& a)
+    void Summmatrix(Matrix &a)
     {
+
         if (n == a.n && m == a.m)
         {
             Matrix<int> d(m, n);
             for (int i = 0; i < m; i++)
                 for (int j = 0; j < n; j++)
                     d.Set_element(i, j, matrix[i][j] + a.Get_element(i, j));
-            d.Print();
             
-            return d;
+            d.Print();
         }
        
     }
+    
 
     ~Matrix()
     {
@@ -171,7 +199,7 @@ int main()
     Matrix<int> mtx2(m, n);
     //Вывод на экран болваник из конструктора
 
-    mtx.Print();
+    //mtx.Print();
     cout << endl;
     
     //Матрица заполняется по формуле
@@ -183,8 +211,8 @@ int main()
     //mtx.Set_from_hand();
  
     //Заполнение матрицы рандомными числами
-    mtx2.Set_from_random();
-    mtx2.Print();
+    //mtx2.Set_from_random();
+    //mtx2.Print();
     cout << endl << "Min element:  " << mtx2.Get_min();
     cout << endl << "Max element:  " << mtx2.Get_max();
    
@@ -192,8 +220,12 @@ int main()
     {
         cout << "ravno";
     }
-    Matrix<int> mtx3=mtx+mtx2;
-    mtx3.Print();
+    cout << endl;
+    mtx.Print();
+    cout << endl;
+    mtx.Determinant();
+    
+  
 
 }
 
